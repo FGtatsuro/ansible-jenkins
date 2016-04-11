@@ -21,8 +21,8 @@ matrix:
       after_script:
         - docker rm -f container
       env:
-        - TARGET=container
         - IMAGE_NAME=fgtatsuro/infra-bridgehead:debian-jessie
+        - TARGET=container
     - os: linux
       dist: trusty
       language: python
@@ -38,17 +38,17 @@ matrix:
       after_script:
         - docker rm -f container
       env:
-        - TARGET=container
         - IMAGE_NAME=fgtatsuro/infra-bridgehead:alpine-3.3
+        - TARGET=container
 
 # This role needs sudo, thus we can't use the new container infrastructure
 # sudo: false
 sudo: required
 
 install:
-  - sudo pip install ansible
+  - sudo pip install -r requirements.txt
   # Resolve dependencies(When target role isn't installed via Ansible Galaxy, auto resolution of dependencies doesn't occur.)
-  - ansible-galaxy install FGtatsuro.python-requirements
+  - ansible-galaxy install -r role_requirements.yml
   - bundle install
 
 script:
