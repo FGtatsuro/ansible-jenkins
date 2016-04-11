@@ -1,2 +1,4 @@
 ---
 # tasks file for jenkins(On Debian family)
+- name: Include common tasks on Linux
+  include: "Linux.yml"
