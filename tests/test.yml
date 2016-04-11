@@ -3,3 +3,6 @@
   remote_user: root
   roles:
     - { role: jenkins }
+  vars:
+    # ATTENTION: Such short/easy password shouldn't be used except testing.
+    jenkins_user_password: 'test'
