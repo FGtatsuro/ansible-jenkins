@@ -1,2 +1,20 @@
 ---
 # tasks file for jenkins(On Alpine Linux)
+# Alpine Linux(busybox) doesn't have useradd/groupadd, but adduser/addgroup
+# WORK_AROUND: Use command module
+# https://github.com/ansible/ansible-modules-core/blob/c52f475c64372042daab4ebc0660a2782b71d10d/system/user.py
+# https://github.com/ansible/ansible-modules-core/blob/c52f475c64372042daab4ebc0660a2782b71d10d/system/group.py
+- name: Create jenkins group
+  command: "addgroup jenkins"
+  register: cmd_jenkins_group
+  become: yes
+  changed_when: cmd_jenkins_group.rc == 0
+  failed_when: "cmd_jenkins_group.rc != 0 and \"group 'jenkins' in use\" not in cmd_jenkins_group.stderr"
+- name: Create jenkins user
+  command: "adduser -h {{ jenkins_home }} -g jenkins -s /sbin/nologin -G jenkins -D jenkins"
+  register: cmd_jenkins_user
+  become: yes
+  changed_when: cmd_jenkins_user.rc == 0
+  failed_when: "cmd_jenkins_group.rc != 0 and \"user 'jenkins' in use\" not in cmd_jenkins_user.stderr"
+- name: Include tasks for Jenkins
+  include: "jenkins.yml"
