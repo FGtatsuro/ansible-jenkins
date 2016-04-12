@@ -2,8 +2,12 @@
 # tasks file for jenkins(On Alpine Linux)
 # Alpine Linux(busybox) doesn't have useradd/groupadd, but adduser/addgroup
 # WORK_AROUND: Use command module
-# https://github.com/ansible/ansible-modules-core/blob/c52f475c64372042daab4ebc0660a2782b71d10d/system/user.py
-# https://github.com/ansible/ansible-modules-core/blob/c52f475c64372042daab4ebc0660a2782b71d10d/system/group.py
+# Ref. https://github.com/ansible/ansible-modules-core/blob/c52f475c64372042daab4ebc0660a2782b71d10d/system/user.py
+# Ref. https://github.com/ansible/ansible-modules-core/blob/c52f475c64372042daab4ebc0660a2782b71d10d/system/group.py
+#
+# Ref. https://wiki.jenkins-ci.org/display/JENKINS/Jenkins+got+java.awt.headless+problem
+- name: Install font Jenkins uses
+  apk: name=ttf-dejavu update_cache=yes
 - name: Create jenkins group
   command: "addgroup jenkins"
   register: cmd_jenkins_group
