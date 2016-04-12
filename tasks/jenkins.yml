@@ -9,7 +9,7 @@
   become: yes
 - name: Download specified version of Jenkins war file
   get_url: >
-    url="https://updates.jenkins-ci.org/download/war/{{ jenkins_version }}/jenkins.war"
+    url="{{ jenkins_download_url }}"
     dest="{{ jenkins_war_dir }}"
     owner="jenkins"
     group="jenkins"
