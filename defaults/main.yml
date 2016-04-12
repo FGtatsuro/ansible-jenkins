@@ -1,6 +1,5 @@
 ---
 # defaults file for jenkins
-jenkins_user_password_salt: "jenkinsrolegene"
 jenkins_home: "/var/lib/jenkins"
 jenkins_war_dir: "/opt/jenkins"
 jenkins_version: "1.656"

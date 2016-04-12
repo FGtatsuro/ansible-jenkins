@@ -22,9 +22,5 @@ describe user('jenkins'), :if => ['debian', 'alpine'].include?(os[:family]) do
 end
 
 describe user('jenkins'), :if => ['debian', 'alpine'].include?(os[:family]) do
-  it { should have_login_shell '/bin/sh' }
-end
-
-describe user('jenkins'), :if => ['debian', 'alpine'].include?(os[:family]) do
-  its(:encrypted_password) { should eq "$6$rounds=656000$jenkinsrolegene$NH3.2ots3RJ3wK2xqZgH.R13qW9Q4DV0efbjcijs7ogwNLs0HWB5sq1oCMiswEFbiitIO.B5ZvesPNNPcez/K/" }
+  it { should have_login_shell '/sbin/nologin' }
 end

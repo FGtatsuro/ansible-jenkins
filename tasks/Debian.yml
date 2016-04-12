@@ -6,8 +6,7 @@
 - name: Create jenkins user
   user: >
     name="jenkins"
-    password="{{ jenkins_user_password|password_hash('sha512', jenkins_user_password_salt) }}"
-    shell="/bin/sh"
+    shell="/sbin/nologin"
     group="jenkins"
     home="{{ jenkins_home }}"
   become: yes
