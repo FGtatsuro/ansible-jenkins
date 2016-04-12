@@ -1,16 +1,5 @@
 ---
 # tasks file for jenkins(On Linux)
-- name: Create jenkins group
-  group: name=jenkins state=present
-  become: yes
-- name: Create jenkins user
-  user: >
-    name="jenkins"
-    password="{{ jenkins_user_password|password_hash('sha512', jenkins_user_password_salt) }}"
-    shell="/bin/sh"
-    group="jenkins"
-    home="{{ jenkins_home }}"
-  become: yes
 - name: Create directory for Jenkins war file
   file: >
     path="{{ jenkins_war_dir }}"
