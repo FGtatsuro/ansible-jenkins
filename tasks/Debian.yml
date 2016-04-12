@@ -1,2 +1,14 @@
 ---
 # tasks file for jenkins(On Debian family)
+- name: Create jenkins group
+  group: name=jenkins state=present
+  become: yes
+- name: Create jenkins user
+  user: >
+    name="jenkins"
+    shell="/sbin/nologin"
+    group="jenkins"
+    home="{{ jenkins_home }}"
+  become: yes
+- name: Include tasks for Jenkins
+  include: "jenkins.yml"

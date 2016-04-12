@@ -8,11 +8,14 @@ namespace :spec do
   hosts = [
     {
       :name     =>  'localhost',
-      :backend  =>  'exec'
+      :backend  =>  'exec',
+      :jenkins_war_path => '/usr/local/opt/jenkins/libexec/jenkins.war'
     },
     {
       :name     =>  'container',
-      :backend  =>  'docker' 
+      :backend  =>  'docker',
+      :jenkins_home => '/var/lib/jenkins',
+      :jenkins_war_path => '/opt/jenkins/jenkins.war'
     }
   ]
   if ENV['SPEC_TARGET'] then
@@ -28,6 +31,9 @@ namespace :spec do
     RSpec::Core::RakeTask.new(host[:name].to_sym) do |t|
       ENV['TARGET_HOST'] = host[:name]
       ENV['SPEC_TARGET_BACKEND'] = host[:backend]
+      ENV['JENKINS_HOME'] = host[:jenkins_home] || nil
+      ENV['JENKINS_VERSION'] = '1.656'
+      ENV['JENKINS_WAR_PATH'] = host[:jenkins_war_path]
       t.pattern = "spec/jenkins_spec.rb"
     end
   end

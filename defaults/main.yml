@@ -1,2 +1,6 @@
 ---
 # defaults file for jenkins
+jenkins_home: "/var/lib/jenkins"
+jenkins_war_dir: "/opt/jenkins"
+jenkins_download_url: "https://updates.jenkins-ci.org/download/war/1.656/jenkins.war"
+jenkins_sha256: "97085359725b16aca0f419486e5c1809399e33dbe6d906cd55ef82fad76fb30d"

@@ -1,0 +1,17 @@
+---
+# tasks file for jenkins(On Linux)
+- name: Create directory for Jenkins war file
+  file: >
+    path="{{ jenkins_war_dir }}"
+    state="directory"
+    owner="jenkins"
+    group="jenkins"
+  become: yes
+- name: Download specified version of Jenkins war file
+  get_url: >
+    url="{{ jenkins_download_url }}"
+    dest="{{ jenkins_war_dir }}"
+    owner="jenkins"
+    group="jenkins"
+    checksum="sha256:{{ jenkins_sha256 }}"
+  become: yes
