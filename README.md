@@ -34,6 +34,7 @@ The dependencies on other roles for this role.
 
 - FGtatsuro.python-requirements
 - FGtatsuro.java
+- FGtatsuro.postfix
 
 Example Playbook
 ----------------
