@@ -15,7 +15,8 @@ namespace :spec do
       :name     =>  'container',
       :backend  =>  'docker',
       :jenkins_home => '/var/lib/jenkins',
-      :jenkins_war_path => '/opt/jenkins/jenkins.war'
+      :jenkins_war_path => '/opt/jenkins/jenkins.war',
+      :jenkins_user_login_shell => '/sbin/nologin'
     }
   ]
   if ENV['SPEC_TARGET'] then
@@ -34,6 +35,7 @@ namespace :spec do
       ENV['JENKINS_HOME'] = host[:jenkins_home] || nil
       ENV['JENKINS_VERSION'] = '1.656'
       ENV['JENKINS_WAR_PATH'] = host[:jenkins_war_path]
+      ENV['JENKINS_USER_LOGIN_SHELL'] = host[:jenkins_user_login_shell] || nil
       t.pattern = "spec/jenkins_spec.rb"
     end
   end

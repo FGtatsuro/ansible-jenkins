@@ -27,5 +27,5 @@ describe file(ENV['JENKINS_HOME']), :if => ['debian', 'alpine'].include?(os[:fam
 end
 
 describe user('jenkins'), :if => ['debian', 'alpine'].include?(os[:family]) do
-  it { should have_login_shell '/sbin/nologin' }
+  it { should have_login_shell ENV['JENKINS_USER_LOGIN_SHELL'] }
 end
