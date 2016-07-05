@@ -1,5 +1,12 @@
 ---
 # tasks file for jenkins(On Linux)
+- name: Create directory for JENKINS_HOME
+  file: >
+    path="{{ jenkins_home }}"
+    state="directory"
+    owner="jenkins"
+    group="jenkins"
+  become: yes
 - name: Create directory for Jenkins war file
   file: >
     path="{{ jenkins_war_dir }}"
