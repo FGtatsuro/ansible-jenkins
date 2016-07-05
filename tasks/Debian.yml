@@ -6,7 +6,7 @@
 - name: Create jenkins user
   user: >
     name="jenkins"
-    shell="/sbin/nologin"
+    shell="{{ jenkins_user_login_shell }}"
     group="jenkins"
   become: yes
 - name: Include tasks for Jenkins
