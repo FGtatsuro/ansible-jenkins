@@ -10,6 +10,12 @@ matrix:
       language: generic
       env:
         - TARGET=localhost
+        - PYTHONPATH="/Library/Python/2.7/site-packages:$PYTHONPATH"
+      install:
+        - sudo pip install -U setuptools
+        - sudo pip install -r requirements.txt
+        - ansible-galaxy install -r role_requirements.yml
+        - bundle install
     - os: linux
       dist: trusty
       language: python
@@ -50,7 +56,7 @@ matrix:
 sudo: required
 
 install:
-  - sudo pip install -r requirements.txt
+  - pip install -r requirements.txt
   # Resolve dependencies(When target role isn't installed via Ansible Galaxy, auto resolution of dependencies doesn't occur.)
   - ansible-galaxy install -r role_requirements.yml
   - bundle install
