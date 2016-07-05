@@ -17,8 +17,13 @@ describe user('jenkins'), :if => ['debian', 'alpine'].include?(os[:family]) do
   it { should belong_to_group 'jenkins' }
 end
 
+# Linux default
 describe user('jenkins'), :if => ['debian', 'alpine'].include?(os[:family]) do
-  it { should have_home_directory ENV['JENKINS_HOME'] }
+  it { should have_home_directory '/home/jenkins' }
+end
+
+describe file(ENV['JENKINS_HOME']), :if => ['debian', 'alpine'].include?(os[:family]) do
+  it { should be_directory }
 end
 
 describe user('jenkins'), :if => ['debian', 'alpine'].include?(os[:family]) do

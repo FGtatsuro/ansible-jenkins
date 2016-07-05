@@ -27,6 +27,8 @@ The variables we can use in this role.
 |jenkins_download_url|Download URL for Jenkins war file. Different version has different URL.|https://updates.jenkins-ci.org/download/war/1.656/jenkins.war|
 |jenkins_sha256|SHA256 signature of Jenkins war file. This is used for idempotency.|97085359725b16aca0f419486e5c1809399e33dbe6d906cd55ef82fad76fb30d|
 
+- These variables are valid only on Debian and Alpine Linux, and they aren't used in OSX.
+
 Role Dependencies
 -----------------
 

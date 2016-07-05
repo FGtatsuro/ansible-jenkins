@@ -8,7 +8,6 @@
     name="jenkins"
     shell="/sbin/nologin"
     group="jenkins"
-    home="{{ jenkins_home }}"
   become: yes
 - name: Include tasks for Jenkins
   include: "jenkins.yml"
